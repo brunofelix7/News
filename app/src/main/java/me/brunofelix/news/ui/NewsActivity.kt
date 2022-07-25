@@ -10,9 +10,11 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import me.brunofelix.news.R
 import me.brunofelix.news.databinding.ActivityNewsBinding
 
+@AndroidEntryPoint
 class NewsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewsBinding

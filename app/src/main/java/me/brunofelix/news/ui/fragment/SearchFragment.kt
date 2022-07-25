@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dagger.hilt.android.AndroidEntryPoint
 import me.brunofelix.news.R
 import me.brunofelix.news.databinding.FragmentFavoritesBinding
 import me.brunofelix.news.databinding.FragmentSearchBinding
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
