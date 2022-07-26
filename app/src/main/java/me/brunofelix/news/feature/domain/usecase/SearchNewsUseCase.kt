@@ -6,11 +6,11 @@ import me.brunofelix.news.feature.domain.model.Article
 import me.brunofelix.news.feature.domain.repository.NewsRemoteRepository
 import javax.inject.Inject
 
-class GetRemoteNewsUseCase @Inject constructor(
+class SearchNewsUseCase @Inject constructor(
     private val repository: NewsRemoteRepository
 ) {
 
     suspend operator fun invoke(query: String, pageNumber: Int): Flow<Resource<List<Article>>> {
-        return repository.getBreakingNews(query, pageNumber)
+        return repository.searchNews(query, pageNumber)
     }
 }

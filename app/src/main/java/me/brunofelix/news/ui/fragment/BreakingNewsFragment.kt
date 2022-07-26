@@ -26,13 +26,9 @@ class BreakingNewsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBreakingNewsBinding.inflate(inflater, container, false)
-        uiSetup()
+        viewModel = (activity as NewsActivity).viewModel
         uiState()
         return binding.root
-    }
-
-    private fun uiSetup() {
-        viewModel = (activity as NewsActivity).viewModel
     }
 
     private fun uiState() {

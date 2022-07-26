@@ -17,11 +17,41 @@ class NewsRemoteRepositoryImpl @Inject constructor(
     private val api: NewsApi
 ) : NewsRemoteRepository {
 
-    override suspend fun getNews(countryCode: String, pageNumber: Int): Flow<Resource<List<Article>>> = flow {
+    override suspend fun getBreakingNews(
+        countryCode: String,
+        pageNumber: Int
+    ): Flow<Resource<List<Article>>> = flow {
         try {
             emit(Resource.Loading())
 
             val response = api.getBreakingNews(countryCode, pageNumber)
+
+            if (response.isSuccessful) {
+                response.body()?.let { it ->
+                    emit(Resource.Success(it.articles.map { it.toArticle() }))
+                }
+            } else {
+                emit(Resource.Error(response.message()))
+            }
+        } catch (e: IOException) {
+            emit(Resource.Error(e.message ?: Constants.ERROR_MESSAGE))
+        } catch (e: HttpException) {
+            emit(Resource.Error(e.message ?: Constants.ERROR_MESSAGE))
+        } catch (e: UnknownHostException) {
+            emit(Resource.Error(e.message ?: Constants.ERROR_MESSAGE))
+        } catch (e: Exception) {
+            emit(Resource.Error(e.message ?: Constants.ERROR_MESSAGE))
+        }
+    }
+
+    override suspend fun searchNews(
+        query: String,
+        pageNumber: Int
+    ): Flow<Resource<List<Article>>> = flow {
+        try {
+            emit(Resource.Loading())
+
+            val response = api.searchNews(query, pageNumber)
 
             if (response.isSuccessful) {
                 response.body()?.let { it ->

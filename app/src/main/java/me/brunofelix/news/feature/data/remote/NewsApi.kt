@@ -16,8 +16,8 @@ interface NewsApi {
     ): Response<NewsDto>
 
     @GET("everything")
-    suspend fun searchForNews(
-        @Query("q") searchQuery: String = "us",
+    suspend fun searchNews(
+        @Query("q") query: String = "us",
         @Query("page") pageNumber: Int = 1,
         @Query("apiKey") apiKey: String = BuildConfig.API_KEY
     ): Response<NewsDto>

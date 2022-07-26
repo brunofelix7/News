@@ -9,6 +9,7 @@ import me.brunofelix.news.feature.domain.repository.NewsRemoteRepository
 import me.brunofelix.news.feature.domain.usecase.GetLocalNewsUseCase
 import me.brunofelix.news.feature.domain.usecase.GetRemoteNewsUseCase
 import me.brunofelix.news.feature.domain.usecase.SaveArticleUseCase
+import me.brunofelix.news.feature.domain.usecase.SearchNewsUseCase
 import javax.inject.Singleton
 
 @Module
@@ -31,5 +32,11 @@ object UseCaseModule {
     @Singleton
     fun provideSaveArticleUseCase(repository: NewsLocalRepository): SaveArticleUseCase {
         return SaveArticleUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSearchNewsUseCase(repository: NewsRemoteRepository): SearchNewsUseCase {
+        return SearchNewsUseCase(repository)
     }
 }
