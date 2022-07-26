@@ -1,6 +1,6 @@
 package me.brunofelix.news.feature.data.remote.dto
 
-import me.brunofelix.news.feature.data.local.entity.ArticleEntity
+import me.brunofelix.news.feature.domain.model.Article
 
 data class ArticleDto(
     val author: String = "",
@@ -12,8 +12,8 @@ data class ArticleDto(
     val urlToImage: String = "",
     val source: SourceDto,
 ) {
-    fun toArticleEntity(): ArticleEntity {
-        return ArticleEntity(
+    fun toArticle(): Article {
+        return Article(
             author = author,
             content = content,
             description = description,

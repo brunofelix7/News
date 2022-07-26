@@ -3,7 +3,7 @@ package me.brunofelix.news.feature.data.local
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import me.brunofelix.news.feature.data.local.converters.Converters
+import me.brunofelix.news.feature.data.local.converter.Converters
 import me.brunofelix.news.feature.data.local.dao.ArticleDao
 import me.brunofelix.news.feature.data.local.entity.ArticleEntity
 
@@ -14,5 +14,5 @@ import me.brunofelix.news.feature.data.local.entity.ArticleEntity
 @TypeConverters(Converters::class)
 abstract class NewsDatabase : RoomDatabase() {
 
-    abstract fun newsDao(): ArticleDao
+    abstract val newsDao: ArticleDao
 }

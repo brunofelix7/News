@@ -9,8 +9,12 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import me.brunofelix.news.BuildConfig
 import me.brunofelix.news.feature.data.local.NewsDatabase
-import me.brunofelix.news.feature.data.local.converters.Converters
+import me.brunofelix.news.feature.data.local.converter.Converters
 import me.brunofelix.news.feature.data.remote.NewsApi
+import me.brunofelix.news.feature.data.repository.NewsLocalRepositoryImpl
+import me.brunofelix.news.feature.data.repository.NewsRemoteRepositoryImpl
+import me.brunofelix.news.feature.domain.repository.NewsLocalRepository
+import me.brunofelix.news.feature.domain.repository.NewsRemoteRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -52,5 +56,17 @@ object AppModule {
             NewsDatabase::class.java,
             "news_db"
         ).addTypeConverter(Converters()).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsLocalRepository(db: NewsDatabase): NewsLocalRepository {
+        return NewsLocalRepositoryImpl(db.newsDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsRemoteRepository(api: NewsApi): NewsRemoteRepository {
+        return NewsRemoteRepositoryImpl(api)
     }
 }

@@ -1,4 +1,4 @@
-package me.brunofelix.news.feature.data.local.converters
+package me.brunofelix.news.feature.data.local.converter
 
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
