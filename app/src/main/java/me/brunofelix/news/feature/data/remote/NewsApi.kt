@@ -1,7 +1,7 @@
-package me.brunofelix.news.data.api
+package me.brunofelix.news.feature.data.remote
 
 import me.brunofelix.news.BuildConfig
-import me.brunofelix.news.data.api.dto.NewsDto
+import me.brunofelix.news.feature.data.remote.dto.NewsDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

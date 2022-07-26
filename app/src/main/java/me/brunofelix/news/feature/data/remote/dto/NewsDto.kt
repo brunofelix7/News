@@ -1,4 +1,4 @@
-package me.brunofelix.news.data.api.dto
+package me.brunofelix.news.feature.data.remote.dto
 
 data class NewsDto(
     val status: String?,
