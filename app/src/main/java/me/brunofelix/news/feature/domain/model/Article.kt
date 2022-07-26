@@ -1,6 +1,7 @@
 package me.brunofelix.news.feature.domain.model
 
 import me.brunofelix.news.feature.data.local.entity.ArticleEntity
+import java.io.Serializable
 
 data class Article(
     val author: String?,
@@ -11,7 +12,7 @@ data class Article(
     val url: String?,
     val urlToImage: String?,
     val source: Source?
-) {
+) : Serializable {
     fun toArticleEntity(): ArticleEntity {
         return ArticleEntity(
             author = author,
