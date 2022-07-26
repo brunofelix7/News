@@ -8,4 +8,5 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="filter">Filter</string>
     <string name="sync">Sync</string>
+    <string name="no_content_found">No content found</string>
 </resources>

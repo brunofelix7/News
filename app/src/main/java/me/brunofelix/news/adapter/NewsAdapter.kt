@@ -21,7 +21,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         }
     }
 
-    private val differ = AsyncListDiffer(this, differCallback)
+    val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val root = ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -48,10 +48,12 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(article: Article) {
-            loadImage(binding.imgUrl, article.urlToImage)
+            if (article.urlToImage != null) {
+                loadImage(binding.imgUrl, article.urlToImage)
+            }
             binding.textTitle.text = article.title
             binding.textDescription.text = article.description
-            binding.textSource.text = article.source.name
+            binding.textSource.text = article.source?.name
 
             //  TODO: Create a pattern
             binding.textPublishedAt.text = article.publishedAt
@@ -60,7 +62,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     private var onItemClickListener: ((Article) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Article) -> Unit) {
+    private fun setOnItemClickListener(listener: (Article) -> Unit) {
         onItemClickListener = listener
     }
 }

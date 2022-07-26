@@ -1,5 +1,7 @@
 package me.brunofelix.news.feature.data.repository
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import me.brunofelix.news.core.util.Constants
 import me.brunofelix.news.core.util.Resource
 import me.brunofelix.news.feature.data.remote.NewsApi
@@ -15,21 +17,27 @@ class NewsRemoteRepositoryImpl @Inject constructor(
     private val api: NewsApi
 ) : NewsRemoteRepository {
 
-    override suspend fun getNews(): Resource<List<Article>> {
+    override suspend fun getNews(countryCode: String, pageNumber: Int): Flow<Resource<List<Article>>> = flow {
         try {
-            val response = api.getBreakingNews()
-            if (response.isSuccessful && response.body() != null) {
-                return Resource.Success(response.body()?.articles?.map { it.toArticle() })
+            emit(Resource.Loading())
+
+            val response = api.getBreakingNews(countryCode, pageNumber)
+
+            if (response.isSuccessful) {
+                response.body()?.let { it ->
+                    emit(Resource.Success(it.articles.map { it.toArticle() }))
+                }
+            } else {
+                emit(Resource.Error(response.message()))
             }
-            return Resource.Error(Constants.ERROR_MESSAGE)
         } catch (e: IOException) {
-            return Resource.Error(e.message ?: Constants.ERROR_MESSAGE)
+            emit(Resource.Error(e.message ?: Constants.ERROR_MESSAGE))
         } catch (e: HttpException) {
-            return Resource.Error(e.message ?: Constants.ERROR_MESSAGE)
+            emit(Resource.Error(e.message ?: Constants.ERROR_MESSAGE))
         } catch (e: UnknownHostException) {
-            return Resource.Error(e.message ?: Constants.ERROR_MESSAGE)
+            emit(Resource.Error(e.message ?: Constants.ERROR_MESSAGE))
         } catch (e: Exception) {
-            return Resource.Error(e.message ?: Constants.ERROR_MESSAGE)
+            emit(Resource.Error(e.message ?: Constants.ERROR_MESSAGE))
         }
     }
 }

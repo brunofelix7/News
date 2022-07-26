@@ -61,7 +61,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsLocalRepository(db: NewsDatabase): NewsLocalRepository {
-        return NewsLocalRepositoryImpl(db.newsDao)
+        return NewsLocalRepositoryImpl(db)
     }
 
     @Provides

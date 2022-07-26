@@ -30,11 +30,12 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/img_url" />
+            app:srcCompat="@drawable/img_empty"
+            tools:ignore="ContentDescription" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/news_layout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
@@ -49,12 +50,12 @@
                 android:ellipsize="end"
                 android:lines="2"
                 android:maxLines="2"
-                android:text="Japan's Sakurajima volcano erupts, prompting highest alert - CNN"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Japan's Sakurajima volcano erupts, prompting highest alert - CNN" />
 
             <TextView
                 android:id="@+id/text_description"
@@ -66,22 +67,23 @@
                 android:ellipsize="end"
                 android:lines="2"
                 android:maxLines="2"
-                android:text="Japan's Sakurajima volcano, located on the island of Kyushu, erupted on Sunday, prompting evacuations in the region."
                 android:textSize="11sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_title" />
+                app:layout_constraintTop_toBottomOf="@+id/text_title"
+                tools:text="Japan's Sakurajima volcano, located on the island of Kyushu, erupted on Sunday, prompting evacuations in the region." />
 
             <TextView
                 android:id="@+id/text_source"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CNN"
                 android:textColor="@color/black"
                 android:textSize="10sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/source_layout"
-                app:layout_constraintEnd_toEndOf="@+id/source_layout" />
+                app:layout_constraintEnd_toEndOf="@+id/source_layout"
+                tools:ignore="SmallSp"
+                tools:text="CNN" />
 
             <LinearLayout
                 android:id="@+id/source_layout"
@@ -92,13 +94,15 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/icon_calendar"
                     android:layout_width="14dp"
                     android:layout_height="14dp"
                     app:srcCompat="@drawable/ic_calendar"
+                    tools:ignore="ContentDescription"
                     tools:layout_editor_absoluteX="82dp"
                     tools:layout_editor_absoluteY="96dp" />
 
@@ -106,11 +110,11 @@
                     android:id="@+id/text_published_at"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:text="24/07/2022 15:00:00"
-                    android:textSize="10sp"
+                    android:layout_marginStart="4dp"
+                    android:textSize="11sp"
                     tools:layout_editor_absoluteX="133dp"
-                    tools:layout_editor_absoluteY="89dp" />
+                    tools:layout_editor_absoluteY="89dp"
+                    tools:text="24/07/2022 15:00:00" />
 
             </LinearLayout>
 
