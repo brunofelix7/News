@@ -7,20 +7,18 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import me.brunofelix.news.R
 import me.brunofelix.news.adapter.NewsAdapter
 import me.brunofelix.news.adapter.listener.NewsListener
 import me.brunofelix.news.databinding.FragmentBreakingNewsBinding
+import me.brunofelix.news.extension.navigateToArticleActivity
 import me.brunofelix.news.extension.snackBar
 import me.brunofelix.news.extension.toast
 import me.brunofelix.news.feature.domain.model.Article
 import me.brunofelix.news.feature.presentation.UIEvent
 import me.brunofelix.news.feature.presentation.news.NewsViewModel
 import me.brunofelix.news.ui.NewsActivity
-import timber.log.Timber
 
 @AndroidEntryPoint
 class BreakingNewsFragment : Fragment(), NewsListener {
@@ -75,13 +73,6 @@ class BreakingNewsFragment : Fragment(), NewsListener {
     }
 
     override fun onItemClick(article: Article) {
-        Timber.d(article.toString())
-        val bundle = Bundle().apply {
-            putSerializable("article", article)
-        }
-        findNavController().navigate(
-            R.id.action_nav_breaking_news_to_articleFragment,
-            bundle
-        )
+        activity?.navigateToArticleActivity(requireContext(), article)
     }
 }

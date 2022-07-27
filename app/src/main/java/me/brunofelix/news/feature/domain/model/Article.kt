@@ -1,8 +1,10 @@
 package me.brunofelix.news.feature.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import me.brunofelix.news.feature.data.local.entity.ArticleEntity
-import java.io.Serializable
 
+@Parcelize
 data class Article(
     val author: String?,
     val content: String?,
@@ -12,7 +14,7 @@ data class Article(
     val url: String?,
     val urlToImage: String?,
     val source: Source?
-) : Serializable {
+) : Parcelable {
     fun toArticleEntity(): ArticleEntity {
         return ArticleEntity(
             author = author,

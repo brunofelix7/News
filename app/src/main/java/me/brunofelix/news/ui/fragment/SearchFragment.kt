@@ -8,15 +8,14 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import me.brunofelix.news.R
 import me.brunofelix.news.adapter.NewsAdapter
 import me.brunofelix.news.adapter.listener.NewsListener
 import me.brunofelix.news.databinding.FragmentSearchBinding
+import me.brunofelix.news.extension.navigateToArticleActivity
 import me.brunofelix.news.extension.snackBar
 import me.brunofelix.news.extension.toast
 import me.brunofelix.news.feature.domain.model.Article
@@ -93,12 +92,6 @@ class SearchFragment : Fragment(), NewsListener {
     }
 
     override fun onItemClick(article: Article) {
-        val bundle = Bundle().apply {
-            putSerializable("article", article)
-        }
-        findNavController().navigate(
-            R.id.action_nav_search_to_articleFragment,
-            bundle
-        )
+        activity?.navigateToArticleActivity(requireContext(), article)
     }
 }

@@ -13,11 +13,7 @@
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
-        app:popExitAnim="@anim/slide_out_right">
-        <action
-            android:id="@+id/action_nav_breaking_news_to_articleFragment"
-            app:destination="@id/articleFragment" />
-    </fragment>
+        app:popExitAnim="@anim/slide_out_right"/>
     <fragment
         android:id="@+id/nav_search"
         android:name="me.brunofelix.news.ui.fragment.SearchFragment"
@@ -26,11 +22,7 @@
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
-        app:popExitAnim="@anim/slide_out_right">
-        <action
-            android:id="@+id/action_nav_search_to_articleFragment"
-            app:destination="@id/articleFragment" />
-    </fragment>
+        app:popExitAnim="@anim/slide_out_right"/>
     <fragment
         android:id="@+id/nav_favorites"
         android:name="me.brunofelix.news.ui.fragment.FavoritesFragment"
@@ -39,18 +31,5 @@
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
-        app:popExitAnim="@anim/slide_out_right">
-        <action
-            android:id="@+id/action_nav_favorites_to_articleFragment"
-            app:destination="@id/articleFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/articleFragment"
-        android:name="me.brunofelix.news.ui.fragment.ArticleFragment"
-        android:label="fragment_article"
-        tools:layout="@layout/fragment_article" >
-        <argument
-            android:name="article"
-            app:argType="me.brunofelix.news.feature.domain.model.Article" />
-    </fragment>
+        app:popExitAnim="@anim/slide_out_right"/>
 </navigation>
