@@ -12,10 +12,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import me.brunofelix.news.core.util.Constants
 import me.brunofelix.news.core.util.Resource
-import me.brunofelix.news.feature.domain.usecase.GetLocalNewsUseCase
-import me.brunofelix.news.feature.domain.usecase.GetRemoteNewsUseCase
-import me.brunofelix.news.feature.domain.usecase.SaveArticleUseCase
-import me.brunofelix.news.feature.domain.usecase.SearchNewsUseCase
+import me.brunofelix.news.feature.domain.model.Article
+import me.brunofelix.news.feature.domain.usecase.*
 import me.brunofelix.news.feature.presentation.UIEvent
 import javax.inject.Inject
 
@@ -24,6 +22,7 @@ class NewsViewModel @Inject constructor(
     private val getRemoteNewsUseCase: GetRemoteNewsUseCase,
     private val getLocalNewsUseCase: GetLocalNewsUseCase,
     private val saveArticleUseCase: SaveArticleUseCase,
+    private val deleteArticleUseCase: DeleteArticleUseCase,
     private val searchNewsUseCase: SearchNewsUseCase
 ) : ViewModel() {
 
@@ -89,4 +88,14 @@ class NewsViewModel @Inject constructor(
             }
         }.launchIn(this)
     }
+
+    fun saveArticle(article: Article) = viewModelScope.launch {
+        saveArticleUseCase.invoke(article)
+    }
+
+    fun deleteArticle(article: Article) = viewModelScope.launch {
+        deleteArticleUseCase.invoke(article)
+    }
+
+    fun getLocalNews() = getLocalNewsUseCase.invoke()
 }

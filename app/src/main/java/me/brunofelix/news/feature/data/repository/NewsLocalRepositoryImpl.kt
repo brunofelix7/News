@@ -22,7 +22,7 @@ class NewsLocalRepositoryImpl @Inject constructor(
         db.newsDao.delete(article.toArticleEntity())
     }
 
-    override fun getLocalNews(): LiveData<List<Article>> {
-        return MutableLiveData(db.newsDao.findAll().value?.map { it.toArticle() })
+    override fun getLocalNews(): LiveData<List<ArticleEntity>> {
+        return db.newsDao.findAll()
     }
 }
